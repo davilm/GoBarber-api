@@ -26,20 +26,29 @@
         "prettier/prettier": "error",
         "class-methods-use-this": "off",
         "@typescript-eslint/camelcase": "off",
-        "@types-eslint/no-unused-vars": ["error", {
-            "argsIgnorePattern": "_"
-        }],
+        "@types-eslint/no-unused-vars": [
+            "error",
+            {
+                "argsIgnorePattern": "_"
+            }
+        ],
+        "@typescript-eslint/interface-name-prefix": [
+            "error",
+            {
+                "prefixWithI": "always"
+            }
+        ],
         "import/extensions": [
             "error",
             "ignorePackages",
             {
-              "ts": "never",
+                "ts": "never",
             }
         ]
     },
     "settings": {
         "import/resolver": {
-          "typescript": {}
+            "typescript": {}
         }
     }
 }
