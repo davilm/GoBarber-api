@@ -12,9 +12,6 @@ class UsersRepository implements IUsersRepository {
     constructor() {
         this.ormRepository = getRepository(User);
     }
-    create(data: ICreateUserDTO): Promise<User> {
-        throw new Error('Method not implemented.');
-    }
     save(data: User): Promise<User> {
         throw new Error('Method not implemented.');
     }
@@ -50,8 +47,8 @@ class UsersRepository implements IUsersRepository {
 
         return users;
     }
+    public async create(userData: ICreateUserDTO): Promise<User> {
 
-    public: Promise<User> {
     const appointment = this.ormRepository.create(userData);
 
     await this.ormRepository.save(appointment);
