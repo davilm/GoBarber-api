@@ -20,7 +20,7 @@ describe('ResetPasswordService', () => {
         resetPassword = new ResetPasswordService(
             fakeUsersRepository,
             fakeUserTokensRepository,
-            fakeHashProvider
+            fakeHashProvider,
         );
     });
 
@@ -37,7 +37,7 @@ describe('ResetPasswordService', () => {
 
         await resetPassword.execute({
             password: '123123',
-            token
+            token,
         });
 
         const updatedUser = await fakeUsersRepository.findById(user.id);
@@ -51,7 +51,7 @@ describe('ResetPasswordService', () => {
             resetPassword.execute({
                 token: 'non-existing-token',
                 password: '123456',
-            })
+            }),
         ).rejects.toBeInstanceOf(AppError);
     });
 
@@ -64,7 +64,7 @@ describe('ResetPasswordService', () => {
             resetPassword.execute({
                 token: 'non-existing-token',
                 password: '123456',
-            })
+            }),
         ).rejects.toBeInstanceOf(AppError);
     });
 
@@ -83,9 +83,11 @@ describe('ResetPasswordService', () => {
             return customDate.setHours(customDate.getHours() + 3);
         });
 
-        await expect(resetPassword.execute({
-            password: '123123',
-            token
-        })).rejects.toBeInstanceOf(AppError);
+        await expect(
+            resetPassword.execute({
+                password: '123123',
+                token,
+            }),
+        ).rejects.toBeInstanceOf(AppError);
     });
 });
