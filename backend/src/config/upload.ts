@@ -1,6 +1,6 @@
 import path from 'path';
 import crypto from 'crypto';
-import multer,{ StorageEngine } from 'multer';
+import multer, { StorageEngine } from 'multer';
 
 const tmpFolder = path.resolve(__dirname, '..', '..', 'tmp');
 
@@ -12,7 +12,7 @@ interface IUploadConfig {
 
     multer: {
         storage: StorageEngine;
-    }
+    };
 
     config: {
         disk: {};
@@ -23,7 +23,7 @@ interface IUploadConfig {
 }
 
 export default {
-    driver: process.env.STORAGE_DRIVER,
+    driver: process.env.STORAGE_DRIVER || 'disk',
 
     tmpFolder,
     uploadsFolder: path.resolve(tmpFolder, 'uploads'),
@@ -36,7 +36,7 @@ export default {
                 const fileName = `${fileHash}-${file.originalname}`;
 
                 return callback(null, fileName);
-            }
+            },
         }),
     },
 
